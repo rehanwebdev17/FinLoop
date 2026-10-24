@@ -878,6 +878,8 @@ html.has-session .dashboard-loading:not(.hide) { display: flex; }
 
 /* ============================================================
    LEADERBOARD
+   Nominal tidak ditampilkan. `.lb-balance` sudah dihapus dari JS
+   dan dari CSS ini. Sorting tetap pakai `posisi` dari backend.
    ============================================================ */
 :root {
     --lb-row-h : 46px;
@@ -935,15 +937,6 @@ html.has-session .dashboard-loading:not(.hide) { display: flex; }
     white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
     letter-spacing:-0.005em; line-height:1.2;
 }
-.lb-balance {
-    flex-shrink:0; font-size:11px; font-weight:700;
-    font-variant-numeric:tabular-nums; color:#5b6b85;
-    letter-spacing:-0.01em; margin-left:2px; white-space:nowrap;
-}
-.lb-row.lb-top-1 .lb-balance,
-.lb-row.lb-top-2 .lb-balance,
-.lb-row.lb-top-3 .lb-balance { color:#1d4ed8; }
-.lb-row.lb-me .lb-balance { color:#18181b; }
 
 .lb-row.lb-top-1 {
     background:linear-gradient(90deg, rgba(37,99,235,.14) 0%, rgba(37,99,235,.05) 40%, rgba(37,99,235,0) 100%);
@@ -982,7 +975,6 @@ html.has-session .dashboard-loading:not(.hide) { display: flex; }
 }
 .lb-row.lb-me-below .lb-num { color:#2563eb; }
 .lb-row.lb-me-below .lb-name { color:#1d4ed8; font-weight:700; }
-.lb-row.lb-me-below .lb-balance { color:#2563eb; }
 
 /* ============================================================
    CONFIRM MODAL
@@ -1034,7 +1026,6 @@ html.has-session .dashboard-loading:not(.hide) { display: flex; }
 .confirm-btn.primary:hover:not(:disabled) { background:#1d4ed8; border-color:#1d4ed8; }
 .confirm-btn:disabled { opacity:.5; cursor:not-allowed; }
 
-/* Khusus tombol "Ya, hapus" — disabled jadi abu, armed jadi merah berdenyut */
 .confirm-btn.danger:disabled {
     background: #e5e7eb !important;
     border-color: #e5e7eb !important;
@@ -1375,7 +1366,6 @@ html.has-session .dashboard-loading:not(.hide) { display: flex; }
   .bar-label { font-size:9px; }
   .leaderboard-title { font-size:9.5px; }
   .lb-name { font-size:12px; }
-  .lb-balance { font-size:10px; }
   .lb-row.lb-top-1::after,
   .lb-row.lb-top-2::after,
   .lb-row.lb-top-3::after { width:26px; height:26px; }
