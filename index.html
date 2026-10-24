@@ -1,0 +1,501 @@
+
+███████╗ ██╗ ███╗   ██╗ ██╗      ██████╗  ██████╗ ██████╗ 
+██╔════╝ ╚═╝ ████╗  ██║ ██║     ██╔═══██╗██╔═══██╗██╔══██╗
+█████╗   ██╗ ██╔██╗ ██║ ██║     ██║   ██║██║   ██║██████╔╝
+██╔══╝   ██║ ██║╚██╗██║ ██║     ██║   ██║██║   ██║██╔═══╝ 
+██║      ██║ ██║ ╚████║ ███████╗╚██████╔╝╚██████╔╝██║     
+╚═╝      ╚═╝ ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝     
+_
+Nama  : REHAN
+Kelsa : XII TJKT 2
+
+-<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinLoop — Login</title>
+<link rel="stylesheet" href="style.css">
+<script>
+try {
+  var raw = localStorage.getItem('finloop_session') || sessionStorage.getItem('finloop_session');
+  if (raw && JSON.parse(raw).username) {
+    document.documentElement.classList.add('has-session');
+  }
+} catch (e) {}
+</script>
+</head>
+<body>
+
+<div class="page page-login" id="page1">
+
+    <svg class="deco deco-tl" viewBox="0 0 620 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="tlGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#2563eb"/><stop offset="100%" stop-color="#3b82f6"/>
+            </linearGradient>
+            <pattern id="tlDots" x1="0" y1="0" width="14" height="14" patternUnits="userSpaceOnUse">
+                <circle cx="3" cy="3" r="2" fill="#2563eb"/>
+            </pattern>
+            <radialGradient id="tlFade" cx="0.2" cy="0.2" r="0.8">
+                <stop offset="0%" stop-color="white" stop-opacity="0"/>
+                <stop offset="100%" stop-color="white" stop-opacity="1"/>
+            </radialGradient>
+        </defs>
+        <path d="M -80 40 C 120 100, 200 180, 380 -60" stroke="url(#tlGrad)" stroke-width="46" stroke-linecap="round" fill="none"/>
+        <path d="M 60 150 C 140 160, 180 165, 240 140" stroke="#60a5fa" stroke-width="7" stroke-linecap="round" fill="none"/>
+        <mask id="tlMask"><rect x="0" y="0" width="140" height="120" fill="white"/><rect x="0" y="0" width="140" height="120" fill="url(#tlFade)"/></mask>
+        <rect x="0" y="0" width="140" height="120" fill="url(#tlDots)" opacity="0.85" mask="url(#tlMask)"/>
+        <rect x="20" y="180" width="100" height="140" fill="url(#tlDots)" opacity="0.7"/>
+    </svg>
+
+    <svg class="deco deco-tr" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="420" cy="40" r="200" fill="#dbeafe" opacity="0.55"/>
+        <circle cx="420" cy="40" r="200" stroke="#60a5fa" stroke-width="3" fill="none" opacity="0.7"/>
+        <circle cx="290" cy="120" r="150" stroke="#93c5fd" stroke-width="2" fill="none" opacity="0.55"/>
+        <circle cx="180" cy="240" r="22" fill="#3b82f6" opacity="0.85"/>
+        <circle cx="180" cy="240" r="30" stroke="#93c5fd" stroke-width="2" fill="none" opacity="0.6"/>
+        <circle cx="300" cy="300" r="10" fill="#60a5fa" opacity="0.7"/>
+        <circle cx="120" cy="180" r="8" fill="#93c5fd" opacity="0.8"/>
+        <circle cx="240" cy="180" r="6" fill="#60a5fa" opacity="0.6"/>
+    </svg>
+
+    <svg class="deco deco-bl" id="decoBL" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="80" cy="360" r="200" fill="#dbeafe" opacity="0.55"/>
+        <circle cx="80" cy="360" r="200" stroke="#60a5fa" stroke-width="3" fill="none" opacity="0.7"/>
+        <circle cx="210" cy="280" r="150" stroke="#93c5fd" stroke-width="2" fill="none" opacity="0.55"/>
+        <circle cx="320" cy="160" r="22" fill="#3b82f6" opacity="0.85"/>
+        <circle cx="320" cy="160" r="30" stroke="#93c5fd" stroke-width="2" fill="none" opacity="0.6"/>
+        <circle cx="200" cy="100" r="10" fill="#60a5fa" opacity="0.7"/>
+        <circle cx="380" cy="220" r="8" fill="#93c5fd" opacity="0.8"/>
+        <circle cx="260" cy="220" r="6" fill="#60a5fa" opacity="0.6"/>
+    </svg>
+
+    <svg class="deco deco-br" id="decoBR" viewBox="0 0 620 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="brGrad" x1="1" y1="1" x2="0" y2="0">
+                <stop offset="0%" stop-color="#2563eb"/><stop offset="100%" stop-color="#3b82f6"/>
+            </linearGradient>
+            <pattern id="brDots" x1="0" y1="0" width="14" height="14" patternUnits="userSpaceOnUse">
+                <circle cx="3" cy="3" r="2" fill="#2563eb"/>
+            </pattern>
+        </defs>
+        <path d="M 700 360 C 500 300, 420 220, 240 460" stroke="url(#brGrad)" stroke-width="46" stroke-linecap="round" fill="none"/>
+        <path d="M 560 250 C 480 240, 440 235, 380 260" stroke="#60a5fa" stroke-width="7" stroke-linecap="round" fill="none"/>
+        <rect x="480" y="0" width="140" height="130" fill="url(#brDots)" opacity="0.85"/>
+        <rect x="500" y="270" width="120" height="130" fill="url(#brDots)" opacity="0.7"/>
+    </svg>
+
+    <div class="center">
+        <div class="center-stack">
+
+            <img src="image/logo.webp" alt="FinLoop" class="brand">
+
+            <div class="auth-card">
+                <div class="auth-head">
+                    <p class="auth-sub" id="authSub">Masuk untuk melanjutkan ke dashboard</p>
+                </div>
+
+                <div class="tabs" id="tabs">
+                    <button type="button" class="tab active" data-tab="login">Login</button>
+                    <button type="button" class="tab" data-tab="register">Register</button>
+                    <span class="tab-indicator" id="tabIndicator"></span>
+                </div>
+
+                <form class="auth-form" id="authForm" autocomplete="off" novalidate>
+
+                    <label class="field" id="namaField" hidden>
+                        <span class="field-label">Nama Lengkap</span>
+                        <input type="text" id="nama" class="field-input" placeholder="nama lengkap kamu" maxlength="40">
+                    </label>
+
+                    <label class="field">
+                        <span class="field-label">Username</span>
+                        <input type="text" id="username" class="field-input" placeholder="minimal 3 karakter" maxlength="20">
+                    </label>
+
+                    <label class="field">
+                        <span class="field-label">Password</span>
+                        <span class="field-wrap">
+                            <input type="password" id="password" class="field-input" placeholder="minimal 4 karakter" maxlength="32">
+                            <button type="button" class="eye-btn" id="eyeBtn" aria-label="lihat password">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                            </button>
+                        </span>
+                    </label>
+
+                    <label class="field" id="confirmField" hidden>
+                        <span class="field-label">Ulangi Password</span>
+                        <input type="password" id="password2" class="field-input" placeholder="ketik ulang password" maxlength="32">
+                    </label>
+
+                    <div class="auth-row" id="rememberField">
+                        <label class="remember">
+                            <input type="checkbox" id="rememberMe" class="remember-box">
+                            <span class="remember-box-ui" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="4 12.5 9.5 18 20 6.5"/>
+                                </svg>
+                            </span>
+                            <span class="remember-label">Ingat saya</span>
+                        </label>
+
+                        <a class="help-link" id="helpLink" href="#" target="_blank" rel="noopener">Butuh bantuan?</a>
+                    </div>
+
+                    <div class="form-error" id="formError"></div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span id="submitText">Masuk</span>
+                    </button>
+                </form>
+
+                <div class="auth-foot" id="authFoot">
+                    Belum punya akun? <button type="button" class="link-btn" id="toRegister">Daftar di sini</button>
+                </div>
+            </div>
+
+            <div class="copyright">© FinLoop Dhasboard - 18 Okt 2026</div>
+        </div>
+    </div>
+
+</div>
+
+<div class="dashboard-loading" id="dashLoading">
+    <div class="dashboard-loading-content">
+        <div class="dashboard-loading-spinner"></div>
+        <div class="dashboard-loading-text">Memperbarui data ...</div>
+    </div>
+</div>
+
+<div class="page page-dashboard" id="page2"></div>
+
+<div class="reset-flash" id="resetFlash">
+    <div class="reset-flash-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><polyline points="3 3 3 8 8 8"/>
+        </svg>
+    </div>
+    <div class="reset-flash-text">Reset Data...</div>
+</div>
+
+<template id="dashboardTemplate">
+
+    <aside class="sidebar">
+        <div class="sidebar-header"><img class="thumb" src="image/logo.webp" alt="Logo"></div>
+        <nav class="nav">
+            <button class="nav-btn active" type="button">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/>
+                        <rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/>
+                    </svg>
+                </span>
+                <span class="label">Dashboard</span>
+            </button>
+
+            <div class="nav-input">
+                <label class="nav-input-label" for="fromInput">From input</label>
+                <div class="nav-input-wrap" id="inputWrap">
+                    <span class="nav-input-prefix" id="inputPrefix">Rp.</span>
+                    <input type="text" id="fromInput" class="nav-input-field" inputmode="numeric" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="0" value="">
+                </div>
+                <div class="nav-note">
+                    <label class="nav-note-label" for="noteInput">Catatan :</label>
+                    <input type="text" id="noteInput" class="nav-note-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                </div>
+                <div class="nav-actions">
+                    <button type="button" class="btn-action btn-tarik" id="btnTarik">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>
+                        </svg>
+                        <span>Tarik</span>
+                    </button>
+                    <button type="button" class="btn-action btn-masuk" id="btnMasuk">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>
+                        </svg>
+                        <span>Masuk</span>
+                    </button>
+                </div>
+            </div>
+
+            <button class="nav-history" type="button" id="btnHistory">
+                <span>History</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/>
+                </svg>
+            </button>
+
+            <div class="history-list" id="historyList"></div>
+            <div class="history-empty" id="historyEmpty">
+                <div class="history-empty-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12H3"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7"/>
+                        <path d="M3 12V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5"/><path d="M12 5v7"/>
+                    </svg>
+                </div>
+                <div class="history-empty-text">Belum ada transaksi</div>
+                <div class="history-empty-sub">Transaksi akan muncul di sini</div>
+            </div>
+        </nav>
+
+        <div class="bottom">
+            <div class="account">
+                <button type="button" class="avatar-wrap" id="avatarBtn" aria-label="Ubah foto profil">
+                    <span class="avatar" id="accAvatar">B</span>
+                    <span class="avatar-edit" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+                        </svg>
+                    </span>
+                </button>
+                <div class="account-info">
+                    <div class="account-name" id="accName">User</div>
+                    <div class="account-email" id="accEmail">-</div>
+                </div>
+            </div>
+            <div class="bottom-actions">
+                <button class="delete-account-btn" type="button" id="btnDeleteAccount" aria-label="Hapus akun">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="3 6 5 6 21 6"/>
+                        <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+                        <path d="M10 11v6"/><path d="M14 11v6"/>
+                        <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+                    </svg>
+                </button>
+                <button class="logout" type="button" id="btnLogout">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                        <polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+                    </svg>
+                    Logout
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main">
+        <div class="main-head">
+            <div class="head-row">
+                <h1 class="main-title">Dashboard analytic your <span class="accent">finance</span></h1>
+                <div class="head-actions">
+                    <button class="cs-btn" type="button" id="csBtn" aria-label="Customer Service">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+                            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+                        </svg>
+                    </button>
+                    <button class="reset-btn" type="button" id="resetBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><polyline points="3 3 3 8 8 8"/>
+                        </svg>
+                        <span>Reset your dashboard</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="top-row">
+                <div class="main-card">
+                    <div class="card-label">Semua total uangmu:</div>
+                    <div class="card-amount">
+                        <span class="rp">Rp.</span><span id="totalBalance">0</span>
+                    </div>
+                    <img class="card-photo" src="image/visa.webp" alt="">
+                    <div class="card-account">
+                        <span class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+                        <span class="num" id="accNum">0000</span>
+                    </div>
+                </div>
+
+                <div class="stat-stack">
+                    <div class="stat-card income">
+                        <div class="stat-left">
+                            <div class="stat-label">Pemasukan</div>
+                            <div class="stat-value in" id="totalIncome">+0</div>
+                        </div>
+                        <div class="stat-right">
+                            <div class="stat-right-label">30 Hari</div>
+                            <div class="stat-heat" id="heatIncome"></div>
+                        </div>
+                    </div>
+                    <div class="stat-card expense">
+                        <div class="stat-left">
+                            <div class="stat-label">Pengeluaran</div>
+                            <div class="stat-value out" id="totalExpense">-0</div>
+                        </div>
+                        <div class="stat-right">
+                            <div class="stat-right-label">30 Hari</div>
+                            <div class="stat-heat" id="heatExpense"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="charts-grid">
+            <div class="chart-card chart-left">
+                <div class="chart-head">
+                    <div>
+                        <div class="chart-title">Ringkasan Transaksi</div>
+                        <div class="chart-sub" id="chartSub">7 hari terakhir · dalam juta rupiah</div>
+                    </div>
+                    <div class="chart-head-right">
+                        <button class="chart-tag active" data-range="week">1M</button>
+                        <button class="chart-tag" data-range="month">1B</button>
+                        <button class="chart-tag" data-range="year">1T</button>
+                    </div>
+                </div>
+                <div class="bars-area" id="barsArea"></div>
+                <div class="chart-legend">
+                    <div class="legend-item"><span class="legend-dot income"></span>Masuk</div>
+                    <div class="legend-item"><span class="legend-dot expense"></span>Keluar</div>
+                </div>
+            </div>
+
+            <div class="chart-card about-card">
+                <div class="leaderboard-head">
+                    <div class="leaderboard-title">Papan peringkat :</div>
+                    <div class="leaderboard-count" id="leaderboardCount">0 user</div>
+                </div>
+                <div class="leaderboard" id="leaderboard"></div>
+            </div>
+        </div>
+    </main>
+
+    <div class="confirm-overlay" id="resetConfirm">
+        <div class="confirm-modal">
+            <div class="confirm-icon danger">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><polyline points="3 3 3 8 8 8"/>
+                </svg>
+            </div>
+            <div class="confirm-title">Reset your dashboard?</div>
+            <div class="confirm-sub">Semua data transaksi akan dihapus permanen dan tidak bisa dikembalikan.</div>
+            <div class="confirm-actions">
+                <button type="button" class="confirm-btn ghost" id="resetCancel">Batal</button>
+                <button type="button" class="confirm-btn danger" id="resetConfirmBtn">Ya, Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="confirm-overlay" id="logoutConfirm">
+        <div class="confirm-modal">
+            <div class="confirm-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                    <polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+            </div>
+            <div class="confirm-title">Yakin ingin keluar?</div>
+            <div class="confirm-sub">Kamu akan kembali ke halaman login. Data kamu tetap aman.</div>
+            <div class="confirm-actions">
+                <button type="button" class="confirm-btn ghost" id="logoutCancel">Batal</button>
+                <button type="button" class="confirm-btn primary" id="logoutConfirmBtn">Ya, Keluar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="confirm-overlay" id="deleteAccountModal">
+        <div class="confirm-modal delete-modal" role="dialog" aria-modal="true" aria-labelledby="deleteAccountTitle">
+            <div class="confirm-icon danger">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="3 6 5 6 21 6"/>
+                    <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+                    <path d="M10 11v6"/><path d="M14 11v6"/>
+                    <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+                </svg>
+            </div>
+            <div class="confirm-title" id="deleteAccountTitle">Hapus akun permanen?</div>
+            <div class="confirm-sub">
+                Akun <strong id="deleteAccountName">@username</strong> beserta seluruh log transaksinya akan dihapus permanen. Tindakan ini tidak bisa dibatalkan.
+            </div>
+
+            <div class="delete-verify">
+                <label class="delete-verify-label" for="deleteAccountUsername">
+                    Ketik <strong>username</strong> kamu untuk konfirmasi
+                </label>
+                <input type="text" class="field-input delete-verify-input" id="deleteAccountUsername"
+                       placeholder="username kamu" autocomplete="off" autocorrect="off"
+                       autocapitalize="off" spellcheck="false">
+            </div>
+
+            <div class="delete-error" id="deleteAccountError"></div>
+
+            <div class="confirm-actions">
+                <button type="button" class="confirm-btn ghost" id="deleteAccountCancel">Batal</button>
+                <button type="button" class="confirm-btn danger" id="deleteAccountConfirm" disabled>Ya, hapus</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="confirm-overlay photo-overlay" id="photoModal">
+        <div class="confirm-modal photo-modal" role="dialog" aria-modal="true" aria-labelledby="photoTitle">
+            <div class="photo-head">
+                <div class="photo-head-text">
+                    <div class="photo-eyebrow">Profil</div>
+                    <div class="photo-title" id="photoTitle">Foto profil</div>
+                </div>
+                <button type="button" class="photo-close" id="photoClose" aria-label="Tutup">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="photo-stage-wrap">
+                <div class="photo-stage" id="photoStage">
+                    <img class="photo-edit-img" id="photoEditImg" alt="" draggable="false" hidden>
+                    <img class="photo-link-img" id="photoLinkImg" alt="" referrerpolicy="no-referrer" hidden>
+                    <div class="photo-stage-empty" id="photoStageEmpty">B</div>
+                </div>
+            </div>
+
+            <div class="photo-zoom" id="photoZoom" hidden>
+                <span class="photo-zoom-mark">−</span>
+                <input type="range" id="photoZoomRange" min="1" max="3" step="0.01" value="1" aria-label="Perbesar atau perkecil foto">
+                <span class="photo-zoom-mark">+</span>
+            </div>
+
+            <div class="photo-tabs" role="tablist" aria-label="Sumber foto">
+                <button type="button" class="photo-tab active" id="photoTabUpload" role="tab" aria-selected="true">Unggah</button>
+                <button type="button" class="photo-tab" id="photoTabLink" role="tab" aria-selected="false">Tautan</button>
+            </div>
+
+            <div class="photo-panel" id="photoPanelUpload">
+                <button type="button" class="photo-pick" id="photoPick">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 16V4"/><path d="m7 9 5-5 5 5"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/>
+                    </svg>
+                    <span>Pilih dari perangkat</span>
+                </button>
+                <div class="photo-hint">JPG, PNG, atau WEBP · maks. 10 MB</div>
+            </div>
+
+            <div class="photo-panel" id="photoPanelLink" hidden>
+                <input type="text" id="photoInput" class="photo-input" placeholder="https://contoh.com/foto.jpg" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                <div class="photo-hint">Gunakan link gambar langsung, bukan link halaman.</div>
+            </div>
+
+            <div class="photo-error" id="photoError"></div>
+
+            <div class="photo-footer">
+                <button type="button" class="photo-delete" id="photoRemove" hidden>Hapus foto</button>
+                <div class="photo-footer-actions">
+                    <button type="button" class="confirm-btn ghost" id="photoCancel">Batal</button>
+                    <button type="button" class="confirm-btn primary" id="photoSave"><span>Simpan</span></button>
+                </div>
+            </div>
+
+            <input type="file" id="photoFile" accept="image/*" hidden>
+        </div>
+    </div>
+
+</template>
+
+<script type="module" src="script.js"></script>
+</body>
+</html>
