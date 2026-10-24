@@ -698,6 +698,8 @@ function renderBarChart(range) {
 
 /* ============================================================
    RENDER — LEADERBOARD
+   Nominal TIDAK ditampilkan di UI. Kolom `jumlah` di sheet `account`
+   tetap dipakai backend untuk mengurutkan `posisi`.
    ============================================================ */
 function buildLeaderboardData() {
   const list = state.leaderboard.slice();
@@ -771,10 +773,7 @@ function createLbRow(user, rank, isMe, isBelowTop) {
   name.textContent = user.nama || 'User';
   el.appendChild(name);
 
-  const bal = document.createElement('span');
-  bal.className = 'lb-balance';
-  bal.textContent = fmt(user.balance || 0);
-  el.appendChild(bal);
+  // Nominal TIDAK ditampilkan di sini. Cukup posisi, avatar, dan nama.
 
   return el;
 }
@@ -1735,7 +1734,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     );
   } catch (_) {}
 
-  /* 2. Blokir klik kanan (context menu) — menutup "View source", "Save image as", "Inspect" */
+  /* 2. Blokir klik kanan */
   document.addEventListener('contextmenu', function (e) {
     e.preventDefault();
     return false;
@@ -1748,24 +1747,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     var tag = (e.target && e.target.tagName || '').toLowerCase();
     var inField = (tag === 'input' || tag === 'textarea');
 
-    // F12
     if (k === 'f12') { e.preventDefault(); return false; }
 
-    // Ctrl+Shift+I / J / C / K (DevTools di berbagai browser)
     if (ctrl && e.shiftKey && (k === 'i' || k === 'j' || k === 'c' || k === 'k')) {
       e.preventDefault(); return false;
     }
 
-    // Ctrl+U (view-source)
     if (ctrl && !e.shiftKey && k === 'u') { e.preventDefault(); return false; }
-
-    // Ctrl+S (save page)
     if (ctrl && !e.shiftKey && k === 's') { e.preventDefault(); return false; }
-
-    // Ctrl+P (print)
     if (ctrl && !e.shiftKey && k === 'p') { e.preventDefault(); return false; }
 
-    // Ctrl+A di luar input
     if (ctrl && !e.shiftKey && k === 'a' && !inField) {
       e.preventDefault(); return false;
     }
@@ -1780,7 +1771,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }, { capture: true });
 
-  /* 5. Cegah copy di luar input (dukung CSS user-select:none) */
+  /* 5. Cegah copy di luar input */
   document.addEventListener('copy', function (e) {
     var tag = (e.target && e.target.tagName || '').toLowerCase();
     if (tag !== 'input' && tag !== 'textarea') {
@@ -1789,7 +1780,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }, { capture: true });
 
-  /* 6. Deteksi kasar DevTools — hanya peringatan console, tidak memblokir */
+  /* 6. Deteksi kasar DevTools */
   var devtoolsWarned = false;
   var THRESHOLD = 160;
   function cekDevtools() {
@@ -1810,7 +1801,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   setInterval(cekDevtools, 1200);
 
-  /* 7. Anti-framing (clickjacking): tolak jika di-embed di iframe */
+  /* 7. Anti-framing (clickjacking) */
   try {
     if (window.top !== window.self) {
       document.documentElement.innerHTML =
@@ -1824,7 +1815,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   } catch (_) {}
 
-  /* 8. Blokir drop file di luar editor foto (cegah navigasi tak sengaja) */
+  /* 8. Blokir drop file di luar editor foto */
   function isPhotoDrop(e) {
     return !!(e.target && e.target.closest && e.target.closest('#photoStage'));
   }
